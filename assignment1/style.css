@@ -75,7 +75,7 @@ body {
 
 .floating-label {
     font-size: 14px;
-    color: black;
+    color: #555555;
     font-weight: bold;
     position: absolute;
     pointer-events: none;
