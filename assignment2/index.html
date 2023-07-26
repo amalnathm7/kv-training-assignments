@@ -29,15 +29,15 @@
             <form class="input form">
                 <div class="input container">
                     <label>Employee Name</label>
-                    <input type="text" id="ename" placeholder="Employee Name" required><br><br>
+                    <input type="text" id="ename" placeholder="Employee Name"><br>
                 </div>
                 <div class="input container">
                     <label>Employee ID</label>
-                    <input type="text" id="eid" placeholder="Employee ID"><br><br>
+                    <input type="text" id="eid" placeholder="Employee ID"><br>
                 </div>
                 <div class="input container">
                     <label>Joining Date</label>
-                    <input type="date" id="edate" placeholder="Joining Date"><br><br>
+                    <input id="edate"  type="text" onload="(this.type='text')" onfocus="(this.type='date')" placeholder="Joining Date"><br>
                 </div>
                 <div class="input container">
                     <label>Role</label>
@@ -47,7 +47,7 @@
                         <option value="saab">Designer</option>
                         <option value="opel">Tester</option>
                         <option value="audi">Manager</option>
-                    </select>
+                    </select><br>
                 </div>
                 <div class="input container">
                     <label>Status</label>
@@ -58,15 +58,15 @@
                         <option value="saab">Temporary</option>
                         <option value="opel">Permanent</option>
                         <option value="audi">Retired</option>
-                    </select>
+                    </select><br>
                 </div>
                 <div class="input container">
                     <label>Experience</label>
-                    <input type="text" id="exp" placeholder="Experience"><br><br>
+                    <input type="text" id="exp" placeholder="Experience"><br>
                 </div>
                 <div class="input container">
                     <label>Address</label>
-                    <input type="text" id="addr" placeholder="Address"><br><br>
+                    <input type="text" id="addr" placeholder="Address"><br>
                 </div>
             </form>
             <div class="buttons container">

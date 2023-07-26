@@ -112,10 +112,6 @@ label {
     font-weight: bold;
 }
 
-.input.container {
-    height: 110px;
-}
-
 .input.form {
     margin-top: 20px;
     display: flex;
@@ -166,6 +162,13 @@ option {
 
 #edate {
     padding-right: 10px;
+}
+
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
 }
 
 .buttons.container {
