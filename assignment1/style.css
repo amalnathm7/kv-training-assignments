@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.split {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.split.left {
+    background-color: #e6f7fd;
+}
+
+.split.right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder {
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+}
+
+.logo {
+    width: 225px;
+    margin-bottom: 30px;
+}
+
+.form_container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login {
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    caret-color: #03AEEE;
+    border: 2px solid lightgray;
+    text-indent: 10px;
+    outline: 0;
+}
+
+.floating-label-group {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.floating-label {
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    pointer-events: none;
+    top: 25px;
+    left: 12px;
+    transition: all 0.1s ease;
+}
+
+input:focus~.floating-label,
+input:not(:focus):valid~.floating-label {
+    top: -10px;
+    bottom: 0px;
+    left: 0px;
+    font-size: 11px;
+    opacity: 1;
+    color: #03AEEE;
+}
+
+.btn {
+    background-color: #03AEEE;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    box-shadow: 2px 2px 5px lightblue;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .logo {
+        width: 200px;
+    }
+
+    .split {
+        width: 100%;
+    }
+}
