@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Practice Assignment</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    function interchangeCase(str) {
+        return str.split("").map(function (c) {
+            return c == c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()
+        }).join('');
+    }
+
+    function sumOfSquares(arr) {
+        return arr.reduce((a, c) => a + Math.pow(c, 2));
+    }
+
+    function countVowels(str) {
+        return str.match(/[aeiou]/gi).length;
+    }
+
+    function extractEmail(str) {
+        return str.match(/[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z.]+/gi);
+    }
+
+    function getResults() {
+        console.log(x); // Output: ???
+        console.log(y); // Output: ???
+        console.log(z); // Output: ???
+
+        if (true) {
+            var x = 10;
+            let y = 20;
+            const z = 30;
+        }
+
+        console.log(x); // Output: ???
+        console.log(y); // Output: ???
+        console.log(z); // Output: ???
+    }
+
+    console.log(interchangeCase("AbC"));
+    console.log(sumOfSquares([1, 2, 3]));
+    console.log(countVowels("Amalu"));
+    console.log(extractEmail("Contact us at: john@example.com, mary@gmail.com, and info@example."));
+    getResults();
+
+</script>
+
+</html>
