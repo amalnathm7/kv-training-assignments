@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+</head>
+<script>
+    let interval = null
+
+    function startTimer() {
+        clearInterval(interval);
+
+        const element = document.getElementById("timer");
+        var time = document.getElementById("time").value;
+
+        if (time < 0) {
+            element.innerHTML = "It's time you idiot!";
+            return;
+        }
+
+        const intervalFn = function () {
+            element.innerHTML = time;
+            time--;
+            if (time == -1) {
+                element.innerHTML = "Time up!";
+                clearInterval(interval);
+            }
+        }
+
+        intervalFn();
+        interval = setInterval(intervalFn, 1000)
+    }
+</script>
+
+<body>
+    <h1>Timer</h1>
+    <input type="number" id="time" placeholder="Enter time (in seconds)">
+    <input type="button" value="Start" onclick="startTimer()">
+    <label id="timer"></label>
+</body>
+
+</html>
