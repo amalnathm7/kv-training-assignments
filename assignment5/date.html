@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Update</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    button {
+        margin-top: 30px;
+        height: 35px;
+        width: 150px;
+        background-color: #03AEEE;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        border: none;
+        box-shadow: 2px 2px 5px lightblue;
+    }
+</style>
+
+<body>
+    <h1>Time is </h1>
+    <button onclick="updateTime()">Update Time</button>
+</body>
+<script>
+    function updateTime() {
+        document.getElementsByTagName("h1")[0].innerHTML = "Time is " + new Date().toTimeString();
+    }
+
+    updateTime();
+</script>
+
+</html>

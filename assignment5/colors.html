@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors</title>
+</head>
+<style>
+    * {
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .sq {
+        margin: 10px;
+        height: 200px;
+        width: 200px;
+        background-color: black;
+    }
+</style>
+
+<body>
+    <div id="sq1" class="sq"></div>
+    <div id="sq2" class="sq"></div>
+</body>
+
+<script>
+    var btn1 = document.getElementById("sq1");
+    var btn2 = document.getElementById("sq2");
+
+    btn1.addEventListener("mouseenter", () => {
+        btn1.style.backgroundColor = 'red';
+    });
+    btn1.addEventListener("mouseleave", () => {
+        btn1.style.backgroundColor = 'black';
+    });
+    btn2.addEventListener("mouseenter", () => {
+        btn2.style.backgroundColor = 'red';
+    });
+    btn2.addEventListener("mouseleave", () => {
+        btn2.style.backgroundColor = 'black';
+    });
+</script>
+
+</html>

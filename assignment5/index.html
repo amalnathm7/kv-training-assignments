@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Practice Assignment</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+    }
+
+    h1 {
+        margin: 30px;
+    }
+
+    pre {
+        margin-left: 50px;
+    }
+
+    p {
+        margin: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        font-size: 20px;
+    }
+
+    button {
+        margin-left: 40px;
+        margin-bottom: 40px;
+        height: 35px;
+        width: 150px;
+        background-color: #03AEEE;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        border: none;
+        box-shadow: 2px 2px 5px lightblue;
+    }
+</style>
+
+<body>
+    <br>
+    <h1>JS Assignment Questions</h1>
+    <p>1. Write a function that would allow you to do this.</p>
+    <pre>
+    var addSix = createBase(6);
+    addSix(10); // returns 16
+    addSix(21); // returns 2
+    </pre>
+    <p>2. Write a function (doLaundry) that would give the following output.<br>
+        &nbsp; &nbsp; &nbsp; Expected Output: wash dry fold done!</p>
+    <pre>
+    function wash(callback) {
+    setTimeout(function() {
+        console.log('wash');
+        callback();
+    }, 500);
+    }
+    
+    function dry(callback) {
+    setTimeout(function() {
+        console.log('dry');
+        callback();
+    }, 300);
+    }
+    
+    function fold(callback) {
+    setTimeout(function() {
+        console.log('fold');
+        callback();
+    }, 100);
+    }
+    
+    doLaundry([wash, dry, fold]);
+    </pre>
+    <p>3. Create an object “updatedData” using the “originalData” provided below by changing
+        the name and the city part only, and print both in the console. Note: The originalData must not be changed.</p>
+    <pre>
+    // Example usage:
+    const originalData = {
+    id: 1,
+    name: 'John',
+    age: 30,
+    address: {
+        city: 'New York',
+        street: '123 Main St',
+        zip: '10001',
+    },
+    };
+
+    // Update the 'name' and 'city' property in the 'address' object
+    const updatedData = {
+    };
+
+    console.log(originalData);
+    console.log(updatedData);
+    </pre>
+    <p>4. Predict the output of the following. Modify the print function to log 1 after 1 second, 2 after 2 second etc.
+        into the console.</p>
+    <pre>
+    function print() {
+        for (var i = 1; i <= 5; i++) {
+            setTimeout(() => console.log(i), i * 1000)
+        }
+    }
+    
+    print()
+    </pre>
+    <p>5. Design an HTML page showing the time in a heading (use Date.now() ), and a button ‘update’ which updates the
+        time when clicked.</p>
+    <p>6. Design an HTML page with two black square divs center aligned on the page. On hovering the first square div
+        change its color using js, and for the second div change its color using css.</p>
+    <p>7. Create an HTML input field of type "password" and a checkbox. When the checkbox is checked, show the password
+        as plain text. When the checkbox is unchecked, hide the password.</p>
+    <pre>
+    function getResults() {
+    console.log(x); // Output: ???
+    
+    if (true) {
+        var x = 10;
+        let y = 20;
+        const z = 30;
+    }
+    
+    console.log(x); // Output: ???
+    console.log(y); // Output: ???
+    console.log(z); // Output: ???
+    }
+    
+    getResults();</pre><br>
+    <h1>Answers</h1>
+    <p>For questions 1 to 4, inspect and check out the "Elements" and "Console" logs. Answers for 5, 6 and 7 are given below. ;)</p>
+    <button onclick="qn5()">QUESTION 5</button>
+    <button onclick="qn6()">QUESTION 6</button>
+    <button onclick="qn7()">QUESTION 7</button>
+    <br>
+</body>
+
+<script>
+    // QUESTION 1
+    function createBase(base) {
+        return function (num) {
+            return num + base;
+        }
+    }
+
+    var addSix = createBase(6);
+    res1 = addSix(10); // returns 16
+    res2 = addSix(21); // returns 27
+    console.log(res1)
+    console.log(res2)
+
+    // QUESTION 2
+    function wash(callback) {
+        setTimeout(function () {
+            console.log('wash');
+            callback();
+        }, 500);
+    }
+
+    function dry(callback) {
+        setTimeout(function () {
+            console.log('dry');
+            callback();
+        }, 300);
+    }
+
+    function fold(callback) {
+        setTimeout(function () {
+            console.log('fold');
+            callback();
+        }, 100);
+    }
+
+    function doLaundry(steps) {
+        return steps.shift()(() => {
+            if (steps.length === 0) {
+                console.log('done!');
+            } else doLaundry(steps);
+        });
+
+        //steps[0](() => steps[1](() => steps[2](() => done())));
+    }
+
+    doLaundry([wash, dry, fold]);
+
+    // QUESTION 3
+    // Example usage:
+    const originalData = {
+        id: 1,
+        name: 'John',
+        age: 30,
+        address: {
+            city: 'New York',
+            street: '123 Main St',
+            zip: '10001',
+        },
+    };
+
+    // Update the 'name' and 'city' property in the 'address' object
+    const updatedData = {
+        ...originalData
+    };
+
+    updatedData.name = 'Jake';
+    updatedData.address = {
+        ...originalData.address,
+        city: 'Los Angeles',
+    };
+
+    console.log(originalData);
+    console.log(updatedData);
+
+    // QUESTION 4
+    function print(i, n) {
+        setTimeout(() => {
+            console.log(i);
+            if (i !== n)
+                print(i + 1, n);
+        }, i * 1000)
+    }
+
+    print(1, 3)
+
+    // QUESTION 5
+    function qn5() {
+        window.location.href = "date.html";
+    }
+
+    // QUESTION 6
+    function qn6() {
+        window.location.href = "colors.html";
+    }
+
+    // QUESTION 7
+    function qn7() {
+        window.location.href = "password.html";
+    }
+</script>
+
+</html>
