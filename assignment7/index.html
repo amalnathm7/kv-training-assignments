@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Assignment 4</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+    }
+
+    h1 {
+        margin: 30px;
+    }
+
+    pre {
+        margin-left: 50px;
+    }
+
+    p {
+        margin: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        font-size: 20px;
+    }
+
+    input {
+        height: 35px;
+        width: 200px;
+        margin-left: 40px;
+        border-radius: 5px;
+        caret-color: #03AEEE;
+        border: 1px solid lightgray;
+        background-color: #fafafa;
+        text-indent: 10px;
+        font-size: 12px;
+        outline: 0;
+    }
+
+    button {
+        margin-left: 40px;
+        margin-bottom: 40px;
+        height: 35px;
+        width: 150px;
+        background-color: #03AEEE;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        border: none;
+        box-shadow: 2px 2px 5px lightblue;
+    }
+
+    #container {
+        display: flex;
+    }
+
+    #d-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #t-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #debounce {
+        margin-top: 35px;
+        margin-bottom: 30px;
+        margin-left: 40px;
+    }
+
+    #throttle {
+        margin-bottom: 30px;
+        margin-left: 40px;
+    }
+</style>
+
+<body>
+    <br>
+    <h1>Questions</h1>
+    <p>1. Find output.</p>
+    <pre>
+    function outer() {
+        var x = 10;
+        
+        function inner() {
+            console.log(x);
+            var x = 20;
+        }
+        
+        return inner;
+    }
+    
+    var closureFunc = outer();
+    closureFunc();
+    </pre>
+    <p>2. Find output.</p>
+    <pre>
+    function createFunctions() {
+        var result = [];
+        
+        for (let i = 0; i < 5; i++) {
+            result.push(function() {
+            console.log(i);
+            });
+        }
+        
+        return result;
+        }
+        
+        var functions = createFunctions();
+        functions.forEach(fn => {
+        fn();
+    })
+    </pre>
+    <p>3. Implement a function that generates a sequence of unique IDs, starting from the given number.</p>
+    <pre>
+    function createSequentialIdGenerator(baseValue) {
+        // your code here
+    }
+    
+    const generateUniqueId = createSequentialIdGenerator(999);
+    
+    console.log(generateUniqueId()); // Expected output: 1000
+    console.log(generateUniqueId()); // Expected output: 1001
+    console.log(generateUniqueId()); // Expected output: 1002
+    </pre>
+    <p>4. Complete below code.</p>
+    <pre>
+    function swapKeyAndValues(obj) {
+        // Your code here
+    }
+    
+    const sampleObject = {
+    key1: 'value1',
+    key2: 'value2',
+    key3: 'value3'
+    };
+    
+    swapKeyAndValues(sampleObject);
+    console.log(sampleObject);
+    
+    // Expected output:
+    {
+    value1: 'key1',
+    value2: 'key2',
+    value3: 'key3'
+    }
+    </pre>
+    <p>5. Find whether all students in the class are passed in the exam
+        Rule: Passed - If average marks of a student > 40 else failed.</p>
+    <pre>
+    const students = [
+        { name: 'John', marks: [70, 85, 90] },
+        { name: 'Jane', marks: [60, 75, 80] },
+        { name: 'David', marks: [50, 55, 65] }
+    ];
+    
+    function checkAllStudentsPassed(studentsArr) {
+        // Your code here
+    }
+    
+    const allStudentsPassed = checkAllStudentsPassed(students);
+    
+    console.log(allStudentsPassed); // Output: true
+    </pre>
+    <p>6. Rewrite the below code snippet using async/await.</p>
+    <pre>
+    function getProcessedData(url) {
+        return downloadData(url)
+        .catch(e => {
+                    return downloadFallbackData(url)
+            })
+            .then(value => {
+                    return processDataInWorker(value) 
+            })
+    }
+    </pre>
+    <p>7. Implement Retry method using promise.</p>
+    <pre>
+    function simulateAsyncTask() {
+        return new Promise((resolve, reject) => {
+            const randomNumber = Math.random();
+            setTimeout(() => {
+            if (randomNumber < 0.8) {
+                resolve('Success');
+            } else {
+                reject('Error: Task failed');
+            }
+            }, 500);
+        });
+    }
+    
+    function retry() {
+    // Your code here
+    }
+    
+    // Sample invocation
+    retry(simulateAsyncTask, 3)
+    .then(result => console.log('Result:', result))
+    .catch(error => console.log('Error:', error));
+    </pre>
+    <p>8. Implement retry method using async await.</p>
+    <p>9. Implement debouncing.</p>
+    <p>10. Implement throttling.</p>
+    <h1>Answers</h1>
+    <p>For questions 1-8, inspect and check out the "Elements" and "Console" logs. For questions 9 and 10, click below.
+        ;)
+    </p>
+    <div id="container">
+        <div id="d-container">
+            <input type="text" id="text-field" placeholder="Question 9" onkeyup="textFieldAction()">
+            <label id="debounce"></label>
+        </div>
+        <div id="t-container">
+            <button onclick="mouseAction()">Question 10</button>
+            <label id="throttle"></label>
+        </div>
+    </div>
+    <br>
+</body>
+
+<script>
+    // QUESTION 1
+    function outer() {
+        var x = 10;
+
+        function inner() {
+            console.log(x);
+            var x = 20;
+        }
+
+        return inner;
+    }
+
+    // var is hoisted and initialised with undefined
+    // let is just hoisted without any initialisation
+    // so, using let x = 20 instead of var x = 20 will throw an error
+
+    var closureFunc = outer();
+    closureFunc();
+
+    // QUESTION 2
+    function createFunctions() {
+        var result = [];
+
+        for (let i = 0; i < 5; i++) {
+            result.push(function () {
+                console.log(i);
+            });
+        }
+
+        return result;
+    }
+
+    var functions = createFunctions();
+    functions.forEach(fn => {
+        fn();
+    })
+
+    // let is hoisted and is initialised before accessing, so no error
+    // if we use var, the memory location is being overwritten, so 
+    // the same value is printed
+
+    // QUESTION 3
+    function createSequentialIdGenerator(baseValue) {
+        // your code here
+        var x = 1;
+
+        return function () {
+            return baseValue + x++;
+        };
+    }
+
+    const generateUniqueId = createSequentialIdGenerator(999);
+
+    console.log(generateUniqueId()); // Expected output: 1000
+    console.log(generateUniqueId()); // Expected output: 1001
+    console.log(generateUniqueId()); // Expected output: 1002
+
+    // QUESTION 4
+    function swapKeyAndValues(obj) {
+        // Your code here
+
+        for (key in obj) {
+            obj[obj[key]] = key;
+            delete obj[key];
+        }
+    }
+
+    const sampleObject = {
+        key1: 'value1',
+        key2: 'value2',
+        key3: 'value3'
+    };
+
+    swapKeyAndValues(sampleObject);
+    console.log(sampleObject);
+
+    // Expected output:
+    // {
+    //   value1: 'key1',
+    //   value2: 'key2',
+    //   value3: 'key3'
+    // }
+
+    // QUESTION 5
+    const students = [
+        { name: 'John', marks: [70, 85, 90] },
+        { name: 'Jane', marks: [60, 75, 80] },
+        { name: 'David', marks: [50, 55, 65] }
+    ];
+
+    function avg(arr) {
+        return arr.reduce((a, c) => {
+            return a += c;
+        }) / arr.length;
+    }
+
+    function checkAllStudentsPassed(studentsArr) {
+        // Your code here
+        return studentsArr.every((student) => {
+            return avg(student["marks"]) > 40;
+        });
+    }
+
+    const allStudentsPassed = checkAllStudentsPassed(students);
+
+    console.log(allStudentsPassed); // Output: true
+
+    // QUESTION 6
+    function downloadData() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject("404!");
+            }, 1000);
+        });
+    }
+
+    function downloadFallbackData(url) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Google!");
+            }, 1000);
+        });
+    }
+
+    function processDataInWorker(value) {
+        console.log(value);
+    }
+
+    function getProcessedData(url) {
+        return downloadData(url)
+            .catch(e => {
+                return downloadFallbackData(url)
+            })
+            .then(value => {
+                return processDataInWorker(value)
+            })
+
+    }
+
+    async function getProcessedDataAsync(url) {
+        try {
+            await downloadData(url);
+        } catch (e) {
+            await processDataInWorker(await downloadFallbackData(url));
+        }
+    }
+
+    getProcessedData("https://www.google.com");
+    getProcessedDataAsync("https://www.google.com");
+
+    // QUESTION 7
+    function simulateAsyncTask() {
+        return new Promise((resolve, reject) => {
+            const randomNumber = Math.random();
+            setTimeout(() => {
+                if (randomNumber < 0.5) {
+                    resolve('Success');
+                } else {
+                    reject('Task failed');
+                }
+            }, 500);
+        });
+    }
+
+    function retryFn(fn, count) {
+        console.log("Promise Try " + (count - i + 1));
+
+        return fn().then((success) => {
+            return success;
+        }).catch((e) => {
+            if (--i == 0) {
+                return e;
+            }
+            return retryFn(fn, count);
+        });
+    }
+
+    var i;
+
+    function retry(fn, count) {
+        // Your code here
+        var result;
+        i = count;
+
+        result = retryFn(fn, count);
+
+        return result;
+    }
+
+    // Sample invocation
+    retry(simulateAsyncTask, 3)
+        .then(result => console.log('Promise Result:', result))
+        .catch(error => console.log('Promise Error:', error));
+
+    // QUESTION 8
+    async function retryAsync(fn, count) {
+        // Your code here
+        var result;
+
+        for (let i = 0; i < count; i++) {
+            console.log("Async Try " + (i + 1));
+
+            try {
+                result = await fn();
+                break;
+            } catch (e) {
+                result = e;
+                continue;
+            }
+        }
+
+        return result;
+    }
+
+    retryAsync(simulateAsyncTask, 3)
+        .then(result => console.log('Async Result:', result))
+        .catch(error => console.log('Async Error:', error));
+
+    // QUESTION 9
+    function debounce(fn, timeout) {
+        let timer;
+
+        return () => {
+            clearTimeout(timer);
+
+            timer = setTimeout(() => {
+                fn();
+            }, timeout);
+        };
+    }
+
+    function printText() {
+        element = document.getElementById("text-field");
+        document.getElementById("debounce").innerHTML = element.value;
+    }
+
+    const textFieldAction = debounce(printText, 300);
+
+    // QUESTION 10
+    function throttle(fn, timeout) {
+        let timer;
+        let flag = true;
+
+        return () => {
+            if (flag) {
+                flag = false;
+                fn();
+            }
+
+            if (!timer) {
+                timer = setTimeout(() => {
+                    flag = true;
+                    timer = undefined;
+                }, timeout);
+            }
+        }
+    }
+
+    let count = 1;
+
+    const mouseAction = throttle(() => {
+        document.getElementById("throttle").innerHTML = "Throttle clicked " + count + " times";
+        count++;
+    }, 500);
+</script>
+
+</html>
