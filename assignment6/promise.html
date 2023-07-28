@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Promise</title>
+</head>
+
+<body>
+    <button id="fetch_data" onclick="fetchData()">Fetch data</button>
+    <div>
+        <h2>Houses</h2>
+        <ul id="house_list"></ul>
+        <h2>Regions</h2>
+        <ul id="region_list">
+        </ul>
+    </div>
+</body>
+<script>
+    function fetchData() {
+        fetch("https://www.anapioficeandfire.com/api/houses").then((results) =>
+            results.json().then((houses) => {
+                const house_list = document.getElementById("house_list");
+                var regions = {
+                };
+
+                houses.forEach(house => {
+                    let list_item = document.createElement("li");
+                    if (!regions.hasOwnProperty(house.region)) {
+                        regions[house.region] = [];
+                    }
+                    regions[house.region].push(house);
+                    list_item.innerHTML = house.name;
+                    house_list.appendChild(list_item);
+                });
+
+                const region_list = document.getElementById("region_list");
+                for (region in regions) {
+                    let region_item = document.createElement("li");
+                    region_item.innerHTML = region;
+                    region_list.appendChild(region_item);
+                    sub_list = document.createElement("ul");
+                    region_item.appendChild(sub_list);
+                    regions[region].forEach((house) => {
+                        let house_item = document.createElement("li");
+                        house_item.innerHTML = house.name;
+                        sub_list.appendChild(house_item);
+                    });
+                }
+            }
+            ));
+    }
+/**
+                            * Refer API Documentation https://anapioficeandfire.com/Documentation
+                            * Fetch the details of various houses in the Game of thrones universe
+                            *
+                            * Challenge 1
+                            * Fetch and list down the names of the houses when the user clicks on 'Fetch data' button
+                            *
+                            * Challenge 2
+                            * Improve the result of challenge 1 by grouping the houses based on region
+                            * *Hint* use promise chaining
+                            */
+
+
+</script>
+
+</html>

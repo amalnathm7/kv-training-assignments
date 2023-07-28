@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Assignment 3</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+    }
+
+    h1 {
+        margin: 30px;
+    }
+
+    pre {
+        margin-left: 50px;
+    }
+
+    p {
+        margin: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        font-size: 20px;
+    }
+
+    button {
+        margin-left: 40px;
+        margin-bottom: 40px;
+        height: 35px;
+        width: 150px;
+        background-color: #03AEEE;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        border: none;
+        box-shadow: 2px 2px 5px lightblue;
+    }
+</style>
+
+<body>
+    <br>
+    <h1>Questions</h1>
+    <p>1. Create a function that returns a promise. The function should work in such a way that when you call
+        print().then(res => console.log(res)) it prints the string “Resolved” after 2 seconds.</p>
+    <pre>
+    function print() {
+    // Write your code here such that a string "Resolved" is Printed to console after 2 seconds.
+    }
+    print().then(res => console.log(res))
+    </pre>
+    <p>Convert the following callback-based function into a promise-based function.</p>
+    <pre>
+    function getDataFromServer(callback) {
+        // Simulate fetching data from the server
+        setTimeout(() => {
+            const data = { id: 1, name: 'John Doe' };
+            callback(data);
+        }, 1000);
+    }
+    </pre>
+    <p>3. Complete the below code.</p>
+    <pre>
+    &#60;!DOCTYPE html>
+    &#60;html lang="en">
+    &#60;head>
+    &#60;title>Promise&#60;/title>
+    &#60;/head>
+    &#60;body>
+    &#60;button id="fetch_data" onclick="">Fetch data&#60;/button>
+    &#60;div id="house_list">&#60;/div>
+    &#60;/body>
+    &#60;script>
+    /**
+    * Refer API Documentation https://anapioficeandfire.com/Documentation
+    * Fetch the details of various houses in the Game of thrones universe
+    *
+    * Challenge 1
+    * Fetch and list down the names of the houses when the user clicks on 'Fetch data' button
+    *
+    * Challenge 2
+    * Improve the result of challenge 1 by grouping the houses based on region
+    * *Hint* use promise chaining
+    */
+    &#60;/script>
+    &#60;/html>
+    </pre>
+    <h1>Answers</h1>
+    <p>For questions 1 and 2, inspect and check out the "Elements" and "Console" logs. For question 3, click below. ;)
+    </p>
+    <button onclick="qn3()">QUESTION 3</button>
+    <br>
+</body>
+
+<script>
+    // QUESTION 1
+    function print() {
+        // Write your code here such that a string "Resolved" is Printed to console after 2 seconds.
+
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve("Resolved"), 2000);
+        });
+    }
+    print().then(res => console.log(res))
+
+    // QUESTION 2
+    function getDataFromServer(callback) {
+        // Simulate fetching data from the server
+        setTimeout(() => {
+            const data = { id: 1, name: 'John Doe' };
+            callback(data);
+        }, 1000);
+    }
+
+    function getDataFromServerPromise() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const data = { id: 1, name: 'John Doe' };
+                resolve(data);
+            }, 1000);
+        });
+    }
+
+    getDataFromServer((data) => { console.log(data) });
+    getDataFromServerPromise().then((data) => {
+        console.log(data);
+    });
+
+    // QUESTION 3
+    function qn3() {
+        window.location.href = "promise.html";
+    }
+
+</script>
+
+</html>
