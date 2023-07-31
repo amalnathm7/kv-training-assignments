@@ -184,6 +184,7 @@ from
 	address
 where
 	"name" = 'Amal'),
+-- not a good practice but using "name" for easy updation
 3000
 ),
 (
@@ -263,24 +264,98 @@ insert
 	into
 	order_product
 values
-('287c751e-425b-48b7-a51f-f611d2e06f01',
-'4bd173bd-05a6-4662-a4dc-07594065e109',
-1),
-('287c751e-425b-48b7-a51f-f611d2e06f01',
-'25a29f14-27df-40d3-a8db-393356e23185',
-1),
-('ed574075-b263-4807-8d01-d9ca93e33f26',
-'4c279ea0-d033-4636-92cf-65e0cdb42e1d',
-1),
-('1e258059-5298-437a-972c-34633cd3cb40',
-'02fd5195-98e0-4d55-bc4f-557c9f432e90',
-1),
-('44b28368-dfff-4127-99bb-c518d5a27e64',
-'25a29f14-27df-40d3-a8db-393356e23185',
-1),
-('3ed9913d-1a87-4b2e-affe-352482494035',
-'4bd173bd-05a6-4662-a4dc-07594065e109',
-1);
+-- Not a good practice but using price for easy updation
+((
+select
+	id
+from
+	"order"
+where
+	price = 3000),
+	(
+select
+		id
+from
+		product
+where
+		price = 2000),
+	1),
+((
+select
+	id
+from
+	"order"
+where
+	price = 3000),
+(
+select
+		id
+from
+		product
+where
+		price = 1000),
+		1),
+(
+(
+select
+	id
+from
+	"order"
+where
+	price = 80),
+	(
+select
+		id
+from
+		product
+where
+		price = 80),
+		1),
+((
+select
+	id
+from
+	"order"
+where
+	price = 5000),
+	(
+select
+		id
+from
+		product
+where
+		price = 5000),
+		1),
+((
+select
+	id
+from
+	"order"
+where
+	price = 1000),
+	(
+select
+		id
+from
+		product
+where
+		price = 1000),
+		1),
+((
+select
+	id
+from
+	"order"
+where
+	price = 2000),
+	(
+select
+		id
+from
+		product
+where
+		price = 2000),
+		1);
 
 create index product_name on
 product(name);
